@@ -32,7 +32,7 @@ export class LocalStorage {
       const jsonValue = await AsyncStorage.getItem(this.storageKey);
       const r = jsonValue != null ? JSON.parse(jsonValue) : [];
 
-      return r;
+      return r.reverse();
     } catch (e) {
       console.error("[GET_STORAGE]", e);
       return null;
@@ -48,6 +48,19 @@ export class LocalStorage {
       );
       await AsyncStorage.setItem(this.storageKey, JSON.stringify(filtered));
       console.log(filtered);
+      return filtered;
+    }
+
+    return [];
+  };
+
+  searchLink = async (itm: string) => {
+    const history = await this.getStorage();
+
+    if (history) {
+      const filtered = history.filter((item: storageType) =>
+        item.link.toLowerCase().includes(itm.toLowerCase()),
+      );
       return filtered;
     }
 
