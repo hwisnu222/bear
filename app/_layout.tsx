@@ -8,6 +8,9 @@ import { Feather } from "@expo/vector-icons";
 import * as Clipboard from "expo-clipboard";
 import { LocalStorage, storageType } from "@/utils/localStorage";
 
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import '@/global.css';
+
 export const unstable_settings = {
   anchor: "(tabs)",
 };
@@ -16,7 +19,9 @@ export const unstable_settings = {
 //   const colorScheme = useColorScheme();
 //
 //   return (
-//     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+
+    <GluestackUIProvider mode="dark">
+      //     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 //       <Stack initialRouteName="drawer">
 //         {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
 //         <Stack.Screen name="drawer" options={{ headerShown: false }} />
@@ -46,7 +51,9 @@ export default function Layout() {
   const fetchCopiedText = async () => {
     const text = await Clipboard.getStringAsync();
     setCopiedText(text);
-    console.log(text);
+    console.log(text
+    </GluestackUIProvider>
+  );
   };
 
   const addItemToStorage = async () => {
