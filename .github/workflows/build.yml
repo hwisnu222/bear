@@ -1,4 +1,4 @@
-name: Build Expo App with EAS
+name: Build Bear app with EAS
 
 on:
   push:
@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: 20
 
+      # [PERBAIKAN FINGERPRINT 1] Instal 'jq' untuk memproses output JSON
+      - name: Install Dependencies for JSON Parsing (jq)
+        run: sudo apt-get install jq -y
+
       - name: Install Dependencies
         run: npm install
 
@@ -25,20 +29,33 @@ jobs:
         run: npm install -g eas-cli
 
       - name: EAS Build (Android)
-        run: eas build --platform android --profile production --non-interactive --wait
+        id: build_android
+        run: |
+          echo "Starting EAS Build and waiting for completion..."
+          BUILD_OUTPUT=$(eas build --platform android --profile production --non-interactive --wait --json)
+          echo "$BUILD_OUTPUT"
+
+          # get fingerprint 
+          BUILD_ID=$(echo "$BUILD_OUTPUT" | jq -r '.id')
+
+          if [ -z "$BUILD_ID" ]; then
+            echo "::error::Could not extract Build ID from EAS output."
+            exit 1
+          fi
+
+          echo "BUILD_ID=$BUILD_ID" >> $GITHUB_ENV
+          echo "Successfully completed build. ID captured: $BUILD_ID"
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
+      # [PERBAIKAN FINGERPRINT 3] Download Build Artifacts menggunakan ID
       - name: Download Build Artifacts
         run: |
           mkdir -p ./builds
 
-          echo "Downloading Android APK..."
-          eas build:download --platform android --latest --non-interactive
+          echo "Downloading Android APK for Build ID: $BUILD_ID..."
+          eas build:download --platform android --id $BUILD_ID --non-interactive
 
-
-          # echo "Downloading iOS IPA..."
-          # eas build:download --platform ios --output ./builds/bear.ipa --latest --non-interactive
           mv *.apk ./builds/bear.apk
 
       - name: Upload Artifacts to GitHub Release
