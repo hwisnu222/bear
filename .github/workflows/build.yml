@@ -5,7 +5,6 @@ on:
     branch: ["main"]
     tags:
       - "v*.*.*"
-  workflow_dispatch:
 
 jobs:
   build:
@@ -26,7 +25,7 @@ jobs:
         run: npm install -g eas-cli
 
       - name: EAS Build (Android & iOS)
-        run: eas build --platform all --profile production
+        run: eas build --platform all --profile production --non-interactive --wait
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
