@@ -21,6 +21,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Heading } from "@/components/ui/heading";
 import { Card } from "@/components/ui/card";
 import { HStack } from "@/components/ui/hstack";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 
 const localStorage = new LocalStorage();
 
@@ -29,10 +30,10 @@ export default function HomeScreen() {
   const [isRefresh, setIsRefresh] = useState(false);
 
   const handleChangeInput = async (text: string) => {
-    if (!text) {
-      setStateStorages(storages);
-      return;
-    }
+    // if (!text) {
+    //   setStateStorages(storages);
+    //   return;
+    // }
     const r = await localStorage.searchLink(text);
     setStateStorages(r);
   };
@@ -108,16 +109,19 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#ebeaf0" }}>
+    <Box className="flex flex-1">
       <AppBar />
       <View style={styles.container}>
         <Box className="mb-4">
-          <TextInput
-            placeholder="Search..."
-            style={styles.input}
-            placeholderTextColor="#c2c2c2"
-            onChangeText={handleChangeInput}
-          />
+          <Input variant="outline" size="lg" className="rounded-lg">
+            <InputSlot className="pl-3">
+              <Feather name="search" size={20} />
+            </InputSlot>
+            <InputField
+              placeholder="Search link"
+              onChangeText={handleChangeInput}
+            />
+          </Input>
         </Box>
 
         <HStack className="gap-4 mb-4">
@@ -183,16 +187,14 @@ export default function HomeScreen() {
             </Box>
           )}
         </ScrollView>
-        {/* <TouchableOpacity style={styles.buttonCopy}> */}
-        {/*   <Text style={styles.labelButton}>Copy</Text> */}
-        {/* </TouchableOpacity> */}
+
         <Fab size="lg" placement="bottom right" className="bg-purple-900">
           <Pressable onPress={addItemToStorage}>
             <Feather name="plus" size={24} color="#ffffff" />
           </Pressable>
         </Fab>
       </View>
-    </SafeAreaView>
+    </Box>
   );
 }
 

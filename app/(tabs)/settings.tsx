@@ -32,17 +32,17 @@ export default function TabTwoScreen() {
     );
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#ebeaf0" }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.parent}>
-        <AppBar isDetail={true} label="Settings" />
+        {/* <AppBar isDetail={true} label="Settings" /> */}
         <Box className="p-4">
           <VStack className="mb-8">
             <Text style={styles.title}>Import / Export Data</Text>
             <Card className="rounded-xl">
-              <Box className="p-4">
+              <Box className="mb-2">
                 <Text>Import</Text>
               </Box>
-              <Box className="p-4">
+              <Box>
                 <Text>Export</Text>
               </Box>
             </Card>
@@ -53,7 +53,7 @@ export default function TabTwoScreen() {
 
             <Card className="rounded-xl">
               <Pressable onPress={handleRemoveStorage}>
-                <Box className="p-4">
+                <Box>
                   <Text className="text-red-500">Reset all data</Text>
                 </Box>
               </Pressable>
