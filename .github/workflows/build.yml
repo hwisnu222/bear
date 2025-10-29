@@ -36,7 +36,7 @@ jobs:
           echo "$BUILD_OUTPUT"
 
           # get fingerprint 
-          BUILD_ID=$(echo "$BUILD_OUTPUT" | jq -r '.id')
+          BUILD_ID=$(echo "$BUILD_OUTPUT" | jq -r '.[0].fingerprint.id')
 
           if [ -z "$BUILD_ID" ]; then
             echo "::error::Could not extract Build ID from EAS output."
@@ -48,13 +48,12 @@ jobs:
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
-      # [PERBAIKAN FINGERPRINT 3] Download Build Artifacts menggunakan ID
       - name: Download Build Artifacts
         run: |
           mkdir -p ./builds
 
           echo "Downloading Android APK for Build ID: $BUILD_ID..."
-          eas build:download --platform android --id $BUILD_ID --non-interactive
+          eas build:download --platform android --fingerprint $BUILD_ID --non-interactive
 
           mv *.apk ./builds/bear.apk
 
