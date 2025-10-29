@@ -2,7 +2,7 @@ name: Build Expo App with EAS
 
 on:
   push:
-    branch: ["main"]
+    branches: ["main"]
     tags:
       - "v*.*.*"
 
