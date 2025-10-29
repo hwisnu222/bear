@@ -56,6 +56,8 @@ jobs:
           eas build:download --platform android --fingerprint $BUILD_ID --non-interactive
 
           mv *.apk ./builds/bear.apk
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       - name: Upload Artifacts to GitHub Release
         uses: softprops/action-gh-release@v2
