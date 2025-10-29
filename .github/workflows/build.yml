@@ -24,7 +24,7 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: EAS Build (Android & iOS)
+      - name: EAS Build (Android)
         run: eas build --platform android --profile production --non-interactive --wait
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
@@ -36,9 +36,13 @@ jobs:
           echo "Downloading Android APK..."
           eas build:download --platform android --output ./builds/bear.apk --latest --non-interactive
 
+          # echo "Downloading iOS IPA..."
+          # eas build:download --platform ios --output ./builds/bear.ipa --latest --non-interactive
+
       - name: Upload Artifacts to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
             ./builds/*.apk
+            # ./builds/*.ipa
           token: ${{ secrets.ACTION_TOKEN }}
