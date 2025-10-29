@@ -121,15 +121,17 @@ export default function HomeScreen() {
         </Box>
 
         <HStack className="gap-4 mb-4">
-          <Card className="rounded-xl">
-            <Box className="gap-2 flex justify-start items-start w-auto">
-              <Box className="rounded-full bg-violet-200 p-2">
+          <Card className="rounded-xl w-full bg-purple-900">
+            <Box className="gap-2 flex justify-start items-start">
+              <Box className="rounded-full p-2 bg-purple-100">
                 <Feather name="link" size={24} />
               </Box>
-              <Text className="font-bold text-2xl">
-                {stateStorages?.length}
-              </Text>
-              <Text>Bookmarks</Text>
+              <Box className="ml-1">
+                <Text className="font-bold text-2xl text-white">
+                  {stateStorages?.length}
+                </Text>
+                <Text className="text-white">Bookmarks</Text>
+              </Box>
             </Box>
           </Card>
           {/* <Card className="shadow"> */}
@@ -142,7 +144,7 @@ export default function HomeScreen() {
           {/*   </Box> */}
           {/* </Card> */}
         </HStack>
-        <Heading className="text-lg font-bold ">Bookmarks</Heading>
+        <Heading className="text-md font-bold ">Bookmarks</Heading>
         <ScrollView
           refreshControl={
             <RefreshControl
@@ -184,7 +186,7 @@ export default function HomeScreen() {
         {/* <TouchableOpacity style={styles.buttonCopy}> */}
         {/*   <Text style={styles.labelButton}>Copy</Text> */}
         {/* </TouchableOpacity> */}
-        <Fab size="lg" placement="bottom right" className="bg-purple-600">
+        <Fab size="lg" placement="bottom right" className="bg-purple-900">
           <Pressable onPress={addItemToStorage}>
             <Feather name="plus" size={24} color="#ffffff" />
           </Pressable>

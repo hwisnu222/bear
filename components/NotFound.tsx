@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { Text } from "./ui/text";
 
 export default function NotFound() {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Item is not found</Text>
+      <Text className="text-gray-600">Item is not found</Text>
     </View>
   );
 }
@@ -14,8 +15,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-  },
-  label: {
-    color: "#cccccc",
   },
 });

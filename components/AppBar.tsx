@@ -27,7 +27,7 @@ export default function AppBar({
   return (
     <View>
       <Box
-        className={`px-4 py-6 bg-white rounded-b-lg gap-3 flex flex-row items-center ${isDetail ? "justify-start" : "justify-between"}`}
+        className={`px-4 py-3 bg-white rounded-b-lg gap-3 flex flex-row items-center ${isDetail ? "justify-start" : "justify-between"}`}
       >
         {isDetail && (
           <Pressable onPress={handleRightButton}>
@@ -38,7 +38,7 @@ export default function AppBar({
         <Heading className="text-2xl font-extrabold">{label}</Heading>
         {!isDetail && (
           <Pressable onPress={() => handleNavigateRoute("settings")}>
-            <Feather name="settings" size={25} />
+            <Feather name="settings" size={20} />
           </Pressable>
         )}
       </Box>
