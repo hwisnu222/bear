@@ -34,7 +34,7 @@ jobs:
           mkdir -p ./builds
 
           echo "Downloading Android APK..."
-          eas build:download --platform android --non-interactive
+          eas build:download --platform android --latest --non-interactive
 
 
           # echo "Downloading iOS IPA..."
