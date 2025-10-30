@@ -55,7 +55,7 @@ jobs:
           echo "Downloading Android APK for Build ID: $BUILD_ID..."
           eas build:download --platform android --fingerprint $BUILD_ID --non-interactive
 
-          mv *.apk ./builds/bear.apk
+          mv /tmp/runner/eas-cli-nodejs/eas-build-run-cache/*.apk ./builds/bear.apk
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
