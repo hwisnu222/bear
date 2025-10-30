@@ -33,7 +33,7 @@ export default function TabTwoScreen() {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.parent}>
+      <Box>
         {/* <AppBar isDetail={true} label="Settings" /> */}
         <Box className="p-4">
           <VStack className="mb-8">
@@ -60,7 +60,7 @@ export default function TabTwoScreen() {
             </Card>
           </VStack>
         </Box>
-      </View>
+      </Box>
     </SafeAreaView>
   );
 }

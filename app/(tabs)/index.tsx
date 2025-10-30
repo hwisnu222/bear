@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TextInput,
   View,
-  Text,
   Pressable,
   Linking,
   Alert,
@@ -109,9 +108,9 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <Box className="flex flex-1">
+    <Box className="flex flex-1" style={{ backgroundColor: "#0f172a" }}>
       <AppBar />
-      <View style={styles.container}>
+      <Box className="p-2 flex flex-1">
         <Box className="mb-4">
           <Input variant="outline" size="lg" className="rounded-lg">
             <InputSlot className="pl-3">
@@ -125,9 +124,9 @@ export default function HomeScreen() {
         </Box>
 
         <HStack className="gap-4 mb-4">
-          <Card className="rounded-xl w-full bg-purple-900">
+          <Card className="rounded-xl w-full bg-[#2DD4BF]">
             <Box className="gap-2 flex justify-start items-start">
-              <Box className="rounded-full p-2 bg-purple-100">
+              <Box className="rounded-full p-2 bg-[#2DD4BF60]">
                 <Feather name="link" size={24} />
               </Box>
               <Box className="ml-1">
@@ -148,7 +147,7 @@ export default function HomeScreen() {
           {/*   </Box> */}
           {/* </Card> */}
         </HStack>
-        <Heading className="text-md font-bold ">Bookmarks</Heading>
+        <Heading className="text-md font-bold text-gray-50">Bookmarks</Heading>
         <ScrollView
           refreshControl={
             <RefreshControl
@@ -165,9 +164,9 @@ export default function HomeScreen() {
             <View style={styles.lists}>
               {stateStorages?.map((item: storageType, idx: number) => (
                 <Pressable onPress={() => handleOpenLink(item.link)} key={idx}>
-                  <View style={styles.list}>
+                  <Box className="bg-[#2DD4BF50]">
                     <Feather name="link" size={18} color="#c2c2c2" />
-                    <Text style={styles.subtitleList} numberOfLines={2}>
+                    <Text numberOfLines={2} className="text-gray-50">
                       {item?.link}
                     </Text>
                     <Pressable
@@ -175,7 +174,7 @@ export default function HomeScreen() {
                     >
                       <Feather name="trash" size={20} color="#c2c2c2" />
                     </Pressable>
-                  </View>
+                  </Box>
                 </Pressable>
               ))}
             </View>
@@ -188,12 +187,12 @@ export default function HomeScreen() {
           )}
         </ScrollView>
 
-        <Fab size="lg" placement="bottom right" className="bg-purple-900">
+        <Fab size="lg" placement="bottom right" className="bg-[#2DD4BF50]">
           <Pressable onPress={addItemToStorage}>
             <Feather name="plus" size={24} color="#ffffff" />
           </Pressable>
         </Fab>
-      </View>
+      </Box>
     </Box>
   );
 }
@@ -212,13 +211,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-  input: {
-    backgroundColor: "#ffffff",
-    borderRadius: 6,
-    padding: 20,
-    marginVertical: 4,
-    outline: "#8b2fc9",
-  },
   title: {
     fontWeight: 700,
   },
@@ -247,11 +239,5 @@ const styles = StyleSheet.create({
     position: "fixed",
     bottom: 4,
     right: 4,
-  },
-
-  copiedPreview: {
-    backgroundColor: "#f2f2f2",
-    paddingVertical: 1,
-    paddingHorizontal: 3,
   },
 });

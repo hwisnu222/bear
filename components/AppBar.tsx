@@ -20,18 +20,18 @@ export default function AppBar({
     navigation.goBack();
   };
   return (
-    <View>
-      <Box
-        className={`px-4 py-3 rounded-b-lg mb-4 gap-3 flex flex-row items-center ${isDetail ? "justify-start" : "justify-between"}`}
-      >
-        {isDetail && (
-          <Pressable onPress={handleRightButton}>
-            <Feather name="arrow-left" size={24} />
-          </Pressable>
-        )}
+    <Box
+      className={`px-4 py-3 rounded-b-lg mb-4 gap-3 flex flex-row items-center ${isDetail ? "justify-start" : "justify-between"}`}
+    >
+      {isDetail && (
+        <Pressable onPress={handleRightButton}>
+          <Feather name="arrow-left" size={24} />
+        </Pressable>
+      )}
 
-        <Heading className="text-2xl font-extrabold">{label}</Heading>
-      </Box>
-    </View>
+      <Heading className="text-2xl font-extrabold text-[#2DD4BF]">
+        {label}
+      </Heading>
+    </Box>
   );
 }

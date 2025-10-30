@@ -36,7 +36,7 @@ jobs:
           echo "$BUILD_OUTPUT"
 
           # get fingerprint 
-          BUILD_ID=$(echo "$BUILD_OUTPUT" | jq -r '.[0].fingerprint.id')
+          BUILD_ID=$(echo "$BUILD_OUTPUT" | jq -r '.[0].fingerprint.hash')
 
           if [ -z "$BUILD_ID" ]; then
             echo "::error::Could not extract Build ID from EAS output."

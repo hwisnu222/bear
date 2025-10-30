@@ -1,6 +1,3 @@
-import { Box } from "@/components/ui/box";
-import { NativeTabs, Icon, Label } from "expo-router/unstable-native-tabs";
-import { Text } from "react-native";
 import { Tabs } from "expo-router";
 import { Feather } from "@expo/vector-icons";
 
@@ -8,7 +5,24 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#581c87",
+        tabBarActiveTintColor: "#2DD4BF",
+
+        tabBarInactiveTintColor: "#9CA3AF",
+
+        tabBarStyle: {
+          backgroundColor: "#0f172a",
+          borderTopWidth: 0,
+          elevation: 10,
+          shadowColor: "#000",
+        },
+
+        headerStyle: {
+          backgroundColor: "#1F2937",
+        },
+        headerTintColor: "#E5E7EB",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
       }}
     >
       <Tabs.Screen
@@ -34,44 +48,4 @@ export default function TabLayout() {
       />
     </Tabs>
   );
-}
-
-{
-  /* <Box className="relative w-96 bottom-2 bg-red-500"> */
-}
-{
-  /*   <Text>bottom</Text> */
-}
-{
-  /*   <NativeTabs> */
-}
-{
-  /*     <NativeTabs.Trigger name="index"> */
-}
-{
-  /*       <Label>Home</Label> */
-}
-{
-  /*       <Icon sf="house.fill" drawable="custom_android_drawable" /> */
-}
-{
-  /*     </NativeTabs.Trigger> */
-}
-{
-  /*     <NativeTabs.Trigger name="settings"> */
-}
-{
-  /*       <Icon sf="gear" drawable="custom_settings_drawable" /> */
-}
-{
-  /*       <Label>Settings</Label> */
-}
-{
-  /*     </NativeTabs.Trigger> */
-}
-{
-  /*   </NativeTabs> */
-}
-{
-  /* </Box> */
 }
